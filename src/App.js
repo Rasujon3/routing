@@ -1,11 +1,25 @@
+import { Route, Switch, Redirect } from "react-router-dom";
+import Admin from "./components/Admin";
+import Home from "./components/Home";
 import Navigation from "./components/Navigation";
-
+import NotFound from "./components/NotFound";
+import Posts from "./components/Posts";
+import Products from "./components/Products";
 
 function App() {
   return (
-    <div>
-      <Navigation/>
-    </div>
+    <>
+      <Navigation />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/home" component={Home} />
+        <Route path="/products/:id" component={Products} />
+        <Route path="/posts/:year?/:month?" component={Posts} />
+        <Route path="/admin" component={Admin} />
+        <Route path="/not-found" component={NotFound} />
+        <Redirect to="/not-found" />
+      </Switch>
+    </>
   );
 }
 
